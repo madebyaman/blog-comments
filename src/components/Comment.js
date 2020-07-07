@@ -43,7 +43,7 @@ const SingleComment = ({ comment }) => (
         <p className="comment-author">
           {comment.name} <span>says</span>
         </p>
-        <time>{moment(comment.time.toDate()).calendar()}</time>
+        {comment.time && (<time>{moment(comment.time.toDate()).calendar()}</time>)}
       </div>
     </div>
     <p>{comment.content}</p>

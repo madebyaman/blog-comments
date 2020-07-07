@@ -1,11 +1,11 @@
-import React from "react"
+import React, {useState} from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Comments from "../components/Comments"
 
 export default ({ data }) => {
   const post = data.markdownRemark
-  const [comments, setComments] = useState([])
+  const [comments, setComments] = useState([{name: "Elon", content: "Hello, I also went there.", pId: null, time: null}])
   const slug = post.fields.slug.substring(1, post.fields.slug.length - 1)
 
   return (
