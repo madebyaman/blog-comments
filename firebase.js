@@ -2,13 +2,13 @@ import firebase from "firebase/app"
 import "firebase/firestore"
 
 var firebaseConfig = {
-  apiKey: "AIzaSyBIsi8f5-w-e9I8qxuAVBiEGzfWngYD1k4",
-  authDomain: "blog-comments-230d8.firebaseapp.com",
-  databaseURL: "https://blog-comments-230d8.firebaseio.com",
-  projectId: "blog-comments-230d8",
-  storageBucket: "blog-comments-230d8.appspot.com",
-  messagingSenderId: "812923594670",
-  appId: "1:812923594670:web:31f56c91b69600b1268a3f",
+  apiKey: "AIzaSyApSxanyBb6D2IVtFCL29dHsRaq4xV2CG4",
+  authDomain: "blog-comments-995eb.firebaseapp.com",
+  databaseURL: "https://blog-comments-995eb.firebaseio.com",
+  projectId: "blog-comments-995eb",
+  storageBucket: "blog-comments-995eb.appspot.com",
+  messagingSenderId: "335918297592",
+  appId: "1:335918297592:web:30f56d162560dc1df6260d"
 }
 
 firebase.initializeApp(firebaseConfig)

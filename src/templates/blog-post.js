@@ -1,12 +1,26 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Comments from "../components/Comments"
+import { firestore } from "../../firebase.js"
 
 export default ({ data }) => {
   const post = data.markdownRemark
-  const [comments, setComments] = useState([{name: "Elon", content: "Hello, I also went there.", pId: null, time: null}])
+  const [comments, setComments] = useState([])
   const slug = post.fields.slug.substring(1, post.fields.slug.length - 1)
+
+  useEffect(() => {
+    const cleanUp = firestore
+      .doc(`comments/${slug}`)
+      .collection("comments")
+      .onSnapshot(snapshot => {
+        const posts = snapshot.docs.map(doc => {
+          return { id: doc.id, ...doc.data() }
+        })
+        setComments(posts)
+      })
+    return () => cleanUp()
+  }, [slug])
 
   return (
     <Layout>
