@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
+import { firestore } from "../../firebase.js"
 
 const CommentBox = styled.div`
   input,
@@ -41,7 +42,20 @@ const CommentForm = ({ parentId, slug }) => {
     }
     setName("")
     setContent("")
-    console.log(comment)
+    const docRef = firestore.doc(`comments/${slug}`)
+    docRef.get().then(docSnapshot => {
+      if (docSnapshot.exists) {
+        docRef.onSnapshot(doc => {
+          docRef.collection("comments").add(comment)
+        })
+      } else {
+        const data = {
+          id: slug,
+        }
+        docRef.set(data)
+        docRef.collection("comments").add(comment)
+      }
+    })
   }
 
   return (
