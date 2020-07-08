@@ -37,24 +37,14 @@ const CommentForm = ({ parentId, slug }) => {
     let comment = {
       name: name,
       content: content,
+      slug: slug,
       pId: parentId || null,
       time: new Date(),
     }
     setName("")
     setContent("")
-    const docRef = firestore.doc(`comments/${slug}`)
-    docRef.get().then(docSnapshot => {
-      if (docSnapshot.exists) {
-        docRef.onSnapshot(doc => {
-          docRef.collection("comments").add(comment)
-        })
-      } else {
-        const data = {
-          id: slug,
-        }
-        docRef.set(data)
-        docRef.collection("comments").add(comment)
-      }
+    firestore.collection(`comments`).add(comment).catch(err => {
+      console.error('error adding comment: ', err)
     })
   }
 

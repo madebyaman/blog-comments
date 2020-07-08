@@ -11,10 +11,11 @@ export default ({ data }) => {
 
   useEffect(() => {
     const cleanUp = firestore
-      .doc(`comments/${slug}`)
-      .collection("comments")
+      .collection(`comments`)
       .onSnapshot(snapshot => {
-        const posts = snapshot.docs.map(doc => {
+        const posts = snapshot.docs
+        .filter(doc => doc.data().slug === slug)
+        .map(doc => {
           return { id: doc.id, ...doc.data() }
         })
         setComments(posts)
