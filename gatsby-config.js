@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Insane Geography`,
+    title: `Unreal Geography`,
     description: `See the places having unique geography.`,
     author: `@aman`,
   },
